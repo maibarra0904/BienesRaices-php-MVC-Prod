@@ -1,8 +1,16 @@
 <?php
 
+
+    use Dotenv\Dotenv as Dot;
+
+    require __DIR__.'/../vendor/autoload.php';
+
+    $dotenv = Dot::createImmutable(__DIR__);
+    $dotenv->safeLoad();
+
     require 'funciones.php';
     require 'config/database.php';
-    require __DIR__.'/../vendor/autoload.php';
+    
 
     $db = conectarDB();
 
