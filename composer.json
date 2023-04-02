@@ -1,0 +1,21 @@
+{
+    "name": "mario/proyecto7",
+    "description": "Creando proyecto con POO",
+    "autoload": {
+        "psr-4": {
+            "Model\\": "./models",
+            "MVC\\" : "./",
+            "Controllers\\" : "./controles"
+        }
+    },
+    "authors": [
+        {
+            "name": "maibarra0904",
+            "email": "mario.ibarra.86@gmail.com"
+        }
+    ],
+    "require": {
+        "intervention/image": "^2.7",
+        "phpmailer/phpmailer": "^6.8"
+    }
+}

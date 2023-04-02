@@ -1,0 +1,68 @@
+@include tablet {
+    .contenedor-anuncios {
+        @include grid(2, 2rem);
+        grid-template-columns: repeat(2, 50%);
+    }
+}
+
+@include desktop {
+    .contenedor-anuncios {
+        @include grid(3, 2rem);
+        grid-template-columns: repeat(3, 30%);
+    }
+}
+
+.anuncio {
+    background-color: lighten($color: $gris, $amount: 5);
+    border: 1px solid darken($color: $gris, $amount: 9);
+
+    .contenido-anuncio {
+        padding: 2rem;
+    }
+
+    h3, p {
+        margin: auto;
+    }
+    
+}
+
+.precio {
+    color: $verde;
+    font-weight: $bold;
+    font-size: 3rem;
+    text-align: left;
+    @include desktop {
+        text-align: center;
+        font-size: 4rem;
+    }
+}
+
+.parrafo-anuncio {
+    overflow: none;
+    @include tablet {
+        height: auto;
+    }
+}
+
+.iconos-caracteristicas {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    max-width: 40rem;
+    li {
+        flex: 1; //Distribuye los íconos en tamaños iguales a lo ancho
+        display: flex;
+        
+        img {
+            flex:  0 0 3rem;
+            margin-right: 1rem;
+            @include tablet {
+                justify-content: center;
+            }
+        }
+        p {
+            font-weight: $black;
+        }
+    }
+
+}
