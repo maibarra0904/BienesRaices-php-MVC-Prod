@@ -23,8 +23,20 @@ class Router {
 
         //Arreglo de rutas protegidas..
         $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar'];
+               
+        function validar_urlProtegida($array, $cadena) {
+            foreach ($array as $elemento) {
+              if (strpos($cadena, $elemento) !== false) {
+                return true;
+              }
+            }
+            return false;
+        }
 
-        $urlActual = $_SERVER['REQUEST_URI']=== '/' ? '/' : $_SERVER['REQUEST_URI'];
+        $urlDep = validar_urlProtegida($rutas_protegidas, $_SERVER['REQUEST_URI'])===true ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'];
+
+        $urlActual = $_SERVER['REQUEST_URI']=== '/' ? '/' : $urlDep;
+        
         
         $metodo = $_SERVER['REQUEST_METHOD'];
         
@@ -36,7 +48,7 @@ class Router {
         }
 
         //Proteger rutas
-        if(in_array($urlActual, $rutas_protegidas) && !$auth) {
+        if(validar_urlProtegida($rutas_protegidas, $_SERVER['REQUEST_URI']) && !$auth) {
             header('Location: /');
         }
 
@@ -66,4 +78,6 @@ class Router {
 
         include_once __DIR__ . "/views/layout.php";
     }
+
+    
 }

@@ -6,7 +6,7 @@
                 $mensaje = notificacionEvento(intval($resultado));
                 if($mensaje) { ?>
                     <p class="alert exito"><?php echo s($mensaje) ?></p>
-                    <?php header("refresh:2;url=/admin");
+                    <?php header("refresh:1;url=/admin");
                     ?>
                 <?php };    
             } 
