@@ -23,7 +23,8 @@ class Router {
 
         //Arreglo de rutas protegidas..
         $rutas_protegidas = ['/admin?','/propiedades', '/vendedores'];
-               
+        
+        //Funcion de validacion de rutas protegidas
         function validar_urlProtegida($array, $cadena) {
             foreach ($array as $elemento) {
               if (strpos($cadena, $elemento) !== false) {
@@ -33,9 +34,9 @@ class Router {
             return false;
         }
 
-        $urlDep = validar_urlProtegida($rutas_protegidas, $_SERVER['REQUEST_URI'])===true ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'];
+        $request_uri = $_SERVER['REQUEST_URI'];
 
-        $urlActual = $_SERVER['REQUEST_URI']=== '/' ? '/' : $urlDep;
+        $urlActual = $request_uri=== '/' ? '/' : parse_url($request_uri)['path'];
         
         
         $metodo = $_SERVER['REQUEST_METHOD'];
@@ -48,7 +49,7 @@ class Router {
         }
 
         //Proteger rutas
-        if(validar_urlProtegida($rutas_protegidas, $_SERVER['REQUEST_URI']) && !$auth) {
+        if(validar_urlProtegida($rutas_protegidas, $request_uri) && !$auth) {
             header('Location: /');
         }
 
