@@ -28,7 +28,7 @@ function css() {
         .pipe(postcss([autoprefixer(), cssnano()]))
         // .pipe(postcss([autoprefixer()]))
         .pipe(sourcemaps.write('.'))
-        .pipe(dest('./public/build/css'));
+        .pipe(dest('./public/build/css')); //Ubicación de carpeta css
 }
 
 function javascript() {

@@ -24,7 +24,8 @@ class Router {
         //Arreglo de rutas protegidas..
         $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar'];
 
-        $urlActual = $_SERVER['REQUEST_URI'] === '' ? '/' : $_SERVER['REQUEST_URI'];
+        $urlActual = $_SERVER['REQUEST_URI']=== '/' ? '/' : $_SERVER['PATH_INFO'];
+        
         $metodo = $_SERVER['REQUEST_METHOD'];
         
         if($metodo === 'GET') {
@@ -44,6 +45,7 @@ class Router {
             //La URL existe y tiene una función asociada
             call_user_func($fn, $this);
         } else {
+            //debugg($fn);
             echo 'Pagina No encontrada';
         }
 
@@ -57,11 +59,11 @@ class Router {
         }
         //Almacenar en memoria durante un momento
         ob_start();
-        include __DIR__ . "/views/$view.php";
+        include_once __DIR__ . "/views/$view.php";
 
         //Limpiar el buffer
         $contenido = ob_get_clean();
 
-        include __DIR__ . "/views/layout.php";
+        include_once __DIR__ . "/views/layout.php";
     }
 }
