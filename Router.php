@@ -22,7 +22,7 @@ class Router {
         $auth = $_SESSION['login'] ?? null;
 
         //Arreglo de rutas protegidas..
-        $rutas_protegidas = ['/admin?','/propiedades', '/vendedores'];
+        $rutas_protegidas = ['/admin','/propiedades', '/vendedores'];
         
         //Funcion de validacion de rutas protegidas
         function validar_urlProtegida($array, $cadena) {
